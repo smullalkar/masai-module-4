@@ -1,0 +1,91 @@
+.appbarLink{
+    text-decoration:'none'; 
+    color:'white';
+}
+
+.addStudent{
+    text-align: center;
+    border: 2px solid #d32f2f;
+    padding: 20px;
+    display: grid;
+    grid-template-areas: 
+    'a b'
+    'c c';
+}
+
+.addStudent > *{
+    padding: 10px;
+}
+
+.studentInfo{
+    grid-area: a;
+}
+
+.studentInfo > *{
+    padding: 10px;
+}
+
+.subjects{
+    grid-area: b;
+}
+
+.subjects > *{
+    padding: 10px;
+}
+
+.btn{
+    grid-area: c;
+}
+
+.textField{
+    padding: 10px;
+}
+
+.marksSheet{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas: 
+    'a b'
+    'c c';
+}
+
+.marksSheet > *{
+    padding: 20px;
+}
+
+.studentDetails{
+    grid-area: a;
+    padding: 10px;
+}
+
+.examtype_student_detail{
+    grid-area: b;
+    padding: 10px;
+    padding-right: 25px;
+    text-align: right;
+}
+
+.marksTable{
+    grid-area: c;
+}
+
+@media screen and (min-width: 600px) {
+    .Route{
+        margin-left: auto;
+        padding: 30px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .Route{
+        margin-left: auto;
+        padding: 30px;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .Route{
+        margin-left: 250px;
+        padding: 30px;
+    }
+}
