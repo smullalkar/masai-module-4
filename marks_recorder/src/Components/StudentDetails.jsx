@@ -13,6 +13,8 @@ import Paper from '@material-ui/core/Paper';
 import { getStudentDetails } from '../Redux/Actions';
 import Card from '@material-ui/core/Card';
 import styles from '../Components/style.module.css'
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 class StudentDetails extends Component {
 
@@ -34,6 +36,13 @@ class StudentDetails extends Component {
                                 <h4>Class : {student.class_of_student}</h4>
                                 <h4>Section : {student.section}</h4>
                                 <h4>Roll Number : {student.roll_no}</h4>
+                                <DeleteIcon
+                                    // onClick={() =>
+                                    //     deleteStudent(row.id)
+                                    // }
+                                    style={{marginRight:'10px'}}
+                                ></DeleteIcon>
+                                <EditIcon/>
                             </div>
                             <div className={styles.examtype_student_detail}>
                                 <h3>Exam Type : {student.exam_type}</h3>
@@ -43,7 +52,7 @@ class StudentDetails extends Component {
                                 <TableContainer component={Paper}>
                                     <Table ria-label="caption table">
                                         <caption>
-                                            *Marksheet of {student.name} for class {student.class_of_student}<br/>
+                                            *Marksheet of {student.name} for class {student.class_of_student}<br />
                                             *Minimum passing percentage is 40%
                                         </caption>
                                         <TableHead>

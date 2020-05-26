@@ -132,160 +132,120 @@ def show(id):
             
     return json.dumps(user_data)
 
-@app.route('/class1')
-def class1():
-    target = id
+@app.route('/<class_std>')
+def clas(class_std):
+    target = class_std
     csv_file = open('data/students.csv','r')
     csvreader = csv.DictReader(csv_file)
     
     user_data = []
     
     for row in csvreader:
-        if row['class_of_student'] == '1':
+        if row['class_of_student'] == target:
             user_data.append(row)
             
     return json.dumps(user_data)
 
-@app.route('/class2')
-def class2():
-    target = id
+@app.route('/filter/<exam_type>/<section>/<grade>')
+def filterData(exam_type,section,grade):
+    ex = exam_type
+    sec = section
+    gr = grade
     csv_file = open('data/students.csv','r')
     csvreader = csv.DictReader(csv_file)
     
     user_data = []
     
-    for row in csvreader:
-        if row['class_of_student'] == '2':
-            user_data.append(row)
-            
-    return json.dumps(user_data)
-
-@app.route('/class3')
-def class3():
-    target = id
-    csv_file = open('data/students.csv','r')
-    csvreader = csv.DictReader(csv_file)
-    
-    user_data = []
-    
-    for row in csvreader:
-        if row['class_of_student'] == '3':
-            user_data.append(row)
-            
-    return json.dumps(user_data)
-
-@app.route('/class4')
-def class4():
-    target = id
-    csv_file = open('data/students.csv','r')
-    csvreader = csv.DictReader(csv_file)
-    
-    user_data = []
-    
-    for row in csvreader:
-        if row['class_of_student'] == '4':
-            user_data.append(row)
-            
-    return json.dumps(user_data)
-
-@app.route('/class5')
-def class5():
-    target = id
-    csv_file = open('data/students.csv','r')
-    csvreader = csv.DictReader(csv_file)
-    
-    user_data = []
-    
-    for row in csvreader:
-        if row['class_of_student'] == '5':
-            user_data.append(row)
-            
-    return json.dumps(user_data)
-
-@app.route('/class6')
-def class6():
-    target = id
-    csv_file = open('data/students.csv','r')
-    csvreader = csv.DictReader(csv_file)
-    
-    user_data = []
-    
-    for row in csvreader:
-        if row['class_of_student'] == '6':
-            user_data.append(row)
-            
-    return json.dumps(user_data)
-
-@app.route('/class7')
-def class7():
-    target = id
-    csv_file = open('data/students.csv','r')
-    csvreader = csv.DictReader(csv_file)
-    
-    user_data = []
-    
-    for row in csvreader:
-        if row['class_of_student'] == '7':
-            user_data.append(row)
-            
-    return json.dumps(user_data)
-
-@app.route('/class8')
-def class8():
-    target = id
-    csv_file = open('data/students.csv','r')
-    csvreader = csv.DictReader(csv_file)
-    
-    user_data = []
-    
-    for row in csvreader:
-        if row['class_of_student'] == '8':
-            user_data.append(row)
-            
-    return json.dumps(user_data)
-
-@app.route('/class9')
-def class9():
-    target = id
-    csv_file = open('data/students.csv','r')
-    csvreader = csv.DictReader(csv_file)
-    
-    user_data = []
-    
-    for row in csvreader:
-        if row['class_of_student'] == '9':
-            user_data.append(row)
-            
-    return json.dumps(user_data)
-
-@app.route('/class10')
-def class10():
-    target = id
-    csv_file = open('data/students.csv','r')
-    csvreader = csv.DictReader(csv_file)
-    
-    user_data = []
-    
-    for row in csvreader:
-        if row['class_of_student'] == '10':
-            user_data.append(row)
-            
-    return json.dumps(user_data)
-
-@app.route('/filter/examtype/<exam_type>')
-def filter_examtype(exam_type):
-    target = exam_type
-    csv_file = open('data/students.csv','r')
-    csvreader = csv.DictReader(csv_file)
-    
-    user_data = []
-    
-    if target == 'All':
+    if ex != 'all' and sec == 'all' and gr == 'all':
+        for row in csvreader:
+            if row['exam_type'] == ex:
+                user_data.append(row)
+                
+    elif ex != 'all' and sec != 'all' and gr == 'all':
+        for row in csvreader:
+            if row['exam_type'] == ex and row['section'] == sec:
+                user_data.append(row)
+                
+    elif ex != 'all' and sec != 'all' and gr != 'all':
+        for row in csvreader:
+            if row['exam_type'] == ex and row['section'] == sec and row['grade'] == gr:
+                user_data.append(row)
+                
+    elif ex == 'all' and sec != 'all' and gr != 'all':
+        for row in csvreader:
+            if row['section'] == sec and row['grade'] == gr:
+                user_data.append(row)
+                
+    elif ex == 'all' and sec == 'all' and gr != 'all':
+        for row in csvreader:
+            if row['grade'] == gr:
+                user_data.append(row)
+                
+    elif ex == 'all' and sec == 'all' and gr == 'all':
         for row in csvreader:
             user_data.append(row)
-    else:
+            
+    elif ex == 'all' and sec != 'all' and gr == 'all':
         for row in csvreader:
-            if row['exam_type'] == target:
+            if row['section'] == sec:
+                user_data.append(row)
+                
+    elif ex != 'all' and sec == 'all' and gr != 'all':
+        for row in csvreader:
+            if row['exam_type'] == ex and row['grade'] == gr:
+                user_data.append(row)
+            
+    return json.dumps(user_data)
+
+@app.route('/<class_of_std>/filter/<exam_type>/<section>/<grade>')
+def fil(class_of_std,exam_type,section,grade):
+    ex = exam_type
+    sec = section
+    gr = grade
+    cl = class_of_std
+    csv_file = open('data/students.csv','r')
+    csvreader = csv.DictReader(csv_file)
+    
+    user_data = []
+    
+    if ex != 'all' and sec == 'all' and gr == 'all':
+        for row in csvreader:
+            if row['class_of_student'] == cl and row['exam_type'] == ex:
+                user_data.append(row)
+                
+    elif ex != 'all' and sec != 'all' and gr == 'all':
+        for row in csvreader:
+            if row['class_of_student'] == cl and row['exam_type'] == ex and row['section'] == sec:
+                user_data.append(row)
+                
+    elif ex != 'all' and sec != 'all' and gr != 'all':
+        for row in csvreader:
+            if row['class_of_student'] == cl and row['exam_type'] == ex and row['section'] == sec and row['grade'] == gr:
+                user_data.append(row)
+                
+    elif ex == 'all' and sec != 'all' and gr != 'all':
+        for row in csvreader:
+            if row['class_of_student'] == cl and row['section'] == sec and row['grade'] == gr:
+                user_data.append(row)
+                
+    elif ex == 'all' and sec == 'all' and gr != 'all':
+        for row in csvreader:
+            if row['class_of_student'] == cl and row['grade'] == gr:
+                user_data.append(row)
+                
+    elif ex == 'all' and sec == 'all' and gr == 'all':
+        for row in csvreader:
+            if row['class_of_student'] == cl:
+                user_data.append(row)
+            
+    elif ex == 'all' and sec != 'all' and gr == 'all':
+        for row in csvreader:
+            if row['class_of_student'] == cl and row['section'] == sec:
+                user_data.append(row)
+                
+    elif ex != 'all' and sec == 'all' and gr != 'all':
+        for row in csvreader:
+            if row['class_of_student'] == cl and row['exam_type'] == ex and row['grade'] == gr:
                 user_data.append(row)
             
     return json.dumps(user_data)
@@ -306,7 +266,7 @@ def filter_examtype(exam_type):
 #         "id" : id
 #     } 
     
-#     csv_file = open('data/users.csv','r')
+#     csv_file = open('data/students.csv','r')
 #     csvreader = csv.DictReader(csv_file)     
     
 #     target = id   
@@ -319,7 +279,7 @@ def filter_examtype(exam_type):
 #             new_data.append(i)
 #     csv_file.close() 
        
-#     csv_file = open("data/users.csv", "w")    
+#     csv_file = open("data/students.csv", "w")    
 #     header = new_data[0].keys()    
 #     write_data = csv.DictWriter(csv_file, fieldnames=header)    
 #     write_data.writeheader()
@@ -327,23 +287,23 @@ def filter_examtype(exam_type):
 #     csv_file.close()    
 #     return json.dumps(new_data)
 
-# @app.route('/users/delete/<id>', methods=['POST'])
-# def delete(id):
-#     target = id    
-#     new_data = []    
-#     csv_file = open("data/users.csv", "r")    
-#     csvreader = csv.DictReader(csv_file)    
-#     for i in csvreader:
-#         if i['id'] == id:
-#             pass
-#         else:
-#             new_data.append(i)
-#     csv_file.close() 
+@app.route('/student/delete/<id>', methods=['POST'])
+def delete(id):
+    target = id    
+    new_data = []    
+    csv_file = open("data/students.csv", "r")    
+    csvreader = csv.DictReader(csv_file)    
+    for i in csvreader:
+        if i['id'] == id:
+            pass
+        else:
+            new_data.append(i)
+    csv_file.close() 
        
-#     csv_file = open("data/users.csv", "w")    
-#     header = new_data[0].keys()   
-#     write_data = csv.DictWriter(csv_file, fieldnames=header)    
-#     write_data.writeheader()
-#     write_data.writerows(new_data)   
-#     csv_file.close()    
-#     return json.dumps({"data": str(new_data), "response":"user successfully deleted"})
+    csv_file = open("data/students.csv", "w")    
+    header = new_data[0].keys()   
+    write_data = csv.DictWriter(csv_file, fieldnames=header)    
+    write_data.writeheader()
+    write_data.writerows(new_data)   
+    csv_file.close()    
+    return json.dumps(new_data)

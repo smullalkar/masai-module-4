@@ -8,18 +8,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { connect } from "react-redux";
-import { getData, examTypeFilterAll } from '../Redux/Actions';
+import { getData, filterAll, deleteStudent } from '../Redux/Actions';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import styles from './style.module.css'
-import FilterListIcon from '@material-ui/icons/FilterList';
 import Box from '@material-ui/core/Box';
 
 class AllStudents extends Component {
@@ -27,9 +24,9 @@ class AllStudents extends Component {
         super(props)
 
         this.state = {
-            section: '',
-            exam_type: '',
-            grades: ''
+            section: 'all',
+            exam_type: 'all',
+            grade: 'all'
         }
     }
 
@@ -43,11 +40,12 @@ class AllStudents extends Component {
         this.props.getData()
     }
     render() {
-        const { data, match, examTypeFilterAll, fil, filteredData } = this.props
-        const section = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-        const examType = ['All', 'Monthly', 'Midterm', 'Finals', 'Internals', 'Externals']
-        const grades = ['O', 'A', 'B', 'C', 'D', 'E', 'PASS', 'FAIL']
-        if (!fil) {
+        console.log('STATE ', this.state)
+        const { data, match, filterAll, fil_all, filteredData, deleteStudent } = this.props
+        const section = ['all', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+        const examType = ['all', 'Monthly', 'Midterm', 'Finals', 'Internals', 'Externals']
+        const grades = ['all', 'O', 'A', 'B', 'C', 'D', 'E', 'PASS', 'FAIL']
+        if (!fil_all) {
             return (
                 <main>
                     <Toolbar />
@@ -92,10 +90,10 @@ class AllStudents extends Component {
                             <FormControl style={{ width: '100px' }}>
                                 <InputLabel id="demo-simple-select-label">Grade</InputLabel>
                                 <Select
-                                    name='grades'
+                                    name='grade'
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={this.state.grades}
+                                    value={this.state.grade}
                                     onChange={this.handleChange}
                                 >
                                     {
@@ -109,7 +107,7 @@ class AllStudents extends Component {
                     </Box>
                     <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
                         <Button
-                            onClick={() => { examTypeFilterAll(this.state.exam_type) }}
+                            onClick={() => { filterAll(this.state) }}
                             variant="contained"
                             color="secondary">
                             Apply
@@ -145,9 +143,9 @@ class AllStudents extends Component {
                                         <TableCell align="right">{row.grade}</TableCell>
                                         <TableCell align="right">
                                             <DeleteIcon
-                                            // onClick={() =>
-                                            //     removeItem(row[0].id)
-                                            // }
+                                                onClick={() =>
+                                                    deleteStudent(row.id)
+                                                }
                                             />
                                         </TableCell>
                                     </TableRow>
@@ -203,10 +201,10 @@ class AllStudents extends Component {
                             <FormControl style={{ width: '100px' }}>
                                 <InputLabel id="demo-simple-select-label">Grade</InputLabel>
                                 <Select
-                                    name='grades'
+                                    name='grade'
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={this.state.grades}
+                                    value={this.state.grade}
                                     onChange={this.handleChange}
                                 >
                                     {
@@ -220,7 +218,7 @@ class AllStudents extends Component {
                     </Box>
                     <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
                         <Button
-                            onClick={() => { examTypeFilterAll(this.state.exam_type) }}
+                            onClick={() => { filterAll(this.state) }}
                             variant="contained"
                             color="secondary">
                             Apply
@@ -256,9 +254,9 @@ class AllStudents extends Component {
                                         <TableCell align="right">{row.grade}</TableCell>
                                         <TableCell align="right">
                                             <DeleteIcon
-                                            // onClick={() =>
-                                            //     removeItem(row[0].id)
-                                            // }
+                                                onClick={() =>
+                                                    deleteStudent(row.id)
+                                                }
                                             />
                                         </TableCell>
                                     </TableRow>
@@ -276,15 +274,16 @@ const mapStateToProps = state => {
     console.log('all students data', state)
     return {
         data: state.data.data,
-        fil: state.fil,
-        filteredData: state.filteredData
+        fil_all: state.fil_all,
+        filteredData: state.filteredData.data
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         getData: a => dispatch(getData(a)),
-        examTypeFilterAll: a => dispatch(examTypeFilterAll(a))
+        filterAll: a => dispatch(filterAll(a)),
+        deleteStudent: a => dispatch(deleteStudent(a))
     };
 };
 

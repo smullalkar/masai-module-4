@@ -26,7 +26,6 @@ class AddStudent extends Component {
             english: '',
             hindi: '',
             second_language: '',
-            grades: '',
             total_min: '',
             total_max: '',
         }
@@ -225,7 +224,6 @@ class AddStudent extends Component {
                                     english: '',
                                     hindi: '',
                                     second_language: '',
-                                    grades: '',
                                     total_min: '',
                                     total_max: ''
                                 })
