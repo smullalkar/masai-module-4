@@ -49,7 +49,7 @@ class AllStudents extends Component {
             return (
                 <main>
                     <Toolbar />
-                    <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
+                    {/* <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
                         <Box p={1} bgcolor="grey.300">
                             <FormControl style={{ width: '100px' }}>
                                 <InputLabel id="demo-simple-select-label">Exam Type</InputLabel>
@@ -113,7 +113,7 @@ class AllStudents extends Component {
                             Apply
                         </Button>
                     </Box>
-                    <br />
+                    <br /> */}
                     <TableContainer component={Paper}>
                         <Table ria-label="caption table">
                             <caption>*Marks list of all the students</caption>
@@ -160,7 +160,7 @@ class AllStudents extends Component {
             return (
                 <main>
                     <Toolbar />
-                    <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
+                    {/* <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
                         <Box p={1} bgcolor="grey.300">
                             <FormControl style={{ width: '100px' }}>
                                 <InputLabel id="demo-simple-select-label">Exam Type</InputLabel>
@@ -223,8 +223,8 @@ class AllStudents extends Component {
                             color="secondary">
                             Apply
                         </Button>
-                    </Box>
-                    <br />
+                    </Box> */}
+                    {/* <br /> */}
                     <TableContainer component={Paper}>
                         <Table ria-label="caption table">
                             <caption>*Marks list of all the students</caption>

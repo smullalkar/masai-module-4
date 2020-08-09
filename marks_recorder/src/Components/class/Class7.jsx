@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { connect } from "react-redux";
-import { clas, filterClass, deleteStudent } from '../../Redux/Actions';
+import { clas, filterClass7, deleteStudent } from '../../Redux/Actions';
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import styles from '../style.module.css'
@@ -42,11 +42,11 @@ class Class7 extends Component {
         this.props.clas(this.state.class_of_std)
     }
     render() {
-        const { c_data, match, filterClass, f, f_data, deleteStudent } = this.props
+        const { c_data, match, filterClass7, fil7, filteredData_c7, deleteStudent } = this.props
         const section = ['all', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
         const examType = ['all', 'Monthly', 'Midterm', 'Finals', 'Internals', 'Externals']
         const grades = ['all', 'O', 'A', 'B', 'C', 'D', 'E', 'PASS', 'FAIL']
-        if (!f) {
+        if (!fil7) {
             return (
                 <main>
                     <Toolbar />
@@ -108,7 +108,7 @@ class Class7 extends Component {
                     </Box>
                     <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
                         <Button
-                            onClick={() => { filterClass(this.state) }}
+                            onClick={() => { filterClass7(this.state) }}
                             variant="contained"
                             color="secondary">
                             Apply
@@ -126,7 +126,6 @@ class Class7 extends Component {
                                     <TableCell style={{ color: 'white' }} align="right">Section</TableCell>
                                     <TableCell style={{ color: 'white' }} align="right">Roll Number</TableCell>
                                     <TableCell style={{ color: 'white' }} align="right">Grade</TableCell>
-                                    <TableCell style={{ color: 'white' }} align="right"></TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -142,13 +141,6 @@ class Class7 extends Component {
                                         <TableCell align="right">{row.section}</TableCell>
                                         <TableCell align="right">{row.roll_no}</TableCell>
                                         <TableCell align="right">{row.grade}</TableCell>
-                                        <TableCell align="right">
-                                            <DeleteIcon
-                                                onClick={() =>
-                                                    deleteStudent(row.id)
-                                                }
-                                            />
-                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -219,7 +211,7 @@ class Class7 extends Component {
                     </Box>
                     <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="background.paper">
                         <Button
-                            onClick={() => { filterClass(this.state) }}
+                            onClick={() => { filterClass7(this.state) }}
                             variant="contained"
                             color="secondary">
                             Apply
@@ -237,11 +229,10 @@ class Class7 extends Component {
                                     <TableCell style={{ color: 'white' }} align="right">Section</TableCell>
                                     <TableCell style={{ color: 'white' }} align="right">Roll Number</TableCell>
                                     <TableCell style={{ color: 'white' }} align="right">Grade</TableCell>
-                                    <TableCell style={{ color: 'white' }} align="right"></TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {f_data && f_data.map((row) => (
+                                {filteredData_c7 && filteredData_c7.map((row) => (
                                     <TableRow hover key={uuidv4()} style={{ backgroundColor: row.grade === 'FAIL' ? '#c5cae9' : 'none' }}>
 
                                         <TableCell component="th" scope="row">
@@ -253,13 +244,6 @@ class Class7 extends Component {
                                         <TableCell align="right">{row.section}</TableCell>
                                         <TableCell align="right">{row.roll_no}</TableCell>
                                         <TableCell align="right">{row.grade}</TableCell>
-                                        <TableCell align="right">
-                                            <DeleteIcon
-                                                onClick={() =>
-                                                    deleteStudent(row.id)
-                                                }
-                                            />
-                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -272,18 +256,18 @@ class Class7 extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log('all students data', state.c_data)
+    console.log('all students data', state.filteredData_c7)
     return {
         c_data: state.c_data,
-        f: state.f,
-        f_data: state.f_data.data
+        fil7: state.fil7,
+        filteredData_c7: state.filteredData_c7.data
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         clas: a => dispatch(clas(a)),
-        filterClass: a => dispatch(filterClass(a)),
+        filterClass7: a => dispatch(filterClass7(a)),
         deleteStudent: a => dispatch(deleteStudent(a))
     };
 };

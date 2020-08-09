@@ -54,9 +54,11 @@ export default function Navbar() {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h5" noWrap>
-            Marks Recorder
+          <Link to='/' className={classes.appbarLink}>
+            <Typography variant="h5" noWrap>
+              Marks Recorder
           </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
       <Hidden only={['xs', 'sm']}>

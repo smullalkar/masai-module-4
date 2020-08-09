@@ -10,11 +10,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { getStudentDetails } from '../Redux/Actions';
+import { getStudentDetails, deleteStudent } from '../Redux/Actions';
 import Card from '@material-ui/core/Card';
 import styles from '../Components/style.module.css'
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import Box from '@material-ui/core/Box';
 
 class StudentDetails extends Component {
 
@@ -23,8 +24,16 @@ class StudentDetails extends Component {
         this.props.getStudentDetails(match_id)
     }
 
+    handleDelete = (payload) => {
+        const{history, deleteStudent, match} = this.props
+        deleteStudent(payload)
+        setTimeout(()=>{
+            history.push('/allstudents');
+        },100);
+    }
+
     render() {
-        const { studentData, match } = this.props
+        const { studentData, match, deleteStudent } = this.props
         return (
             <main>
                 <Toolbar />
@@ -37,16 +46,15 @@ class StudentDetails extends Component {
                                 <h4>Section : {student.section}</h4>
                                 <h4>Roll Number : {student.roll_no}</h4>
                                 <DeleteIcon
-                                    // onClick={() =>
-                                    //     deleteStudent(row.id)
-                                    // }
+                                    onClick={() =>
+                                        this.handleDelete(student.id)
+                                    }
                                     style={{marginRight:'10px'}}
                                 ></DeleteIcon>
-                                <EditIcon/>
+                                <Link to={`${match.url}/edit/${student.id}`}><EditIcon/></Link>
                             </div>
                             <div className={styles.examtype_student_detail}>
                                 <h3>Exam Type : {student.exam_type}</h3>
-                                <h3>FINAL RESULT : {student.grade}</h3>
                             </div>
                             <div className={styles.marksTable}>
                                 <TableContainer component={Paper}>
@@ -105,9 +113,28 @@ class StudentDetails extends Component {
                                                     Number(student.second_language) >= Number(student.min_marks_each_sub) ? <TableCell align="center">PASS</TableCell> : <TableCell align="center">FAIL</TableCell>
                                                 }
                                             </TableRow>
+                                            <TableRow hover>
+                                                <TableCell align="center" style={{fontWeight:'bolder'}}>TOTAL MARKS</TableCell>
+                                                <TableCell align="center" style={{fontWeight:'bolder'}}>{Number(student.total_marks_obtained)}</TableCell>
+                                                <TableCell align="center"></TableCell>
+                                            </TableRow>
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
+                            </div>
+                            <div className={styles.result}>
+                                <h3>
+                                    TOTAL MAXIMUM MARKS : {parseFloat(student.total_max).toFixed(2)}
+                                </h3>
+                                <h3>
+                                    TOTAL MARKS OBTAINED : {parseFloat(student.total_marks_obtained).toFixed(2)}
+                                </h3>
+                                <h3>
+                                    PERCENTAGE : {parseFloat(student.percent).toFixed(2)}
+                                </h3>
+                                <h3>
+                                    FINAL RESULT : {student.grade}
+                                </h3>
                             </div>
                         </Card>
                     ))
@@ -126,7 +153,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getStudentDetails: a => dispatch(getStudentDetails(a))
+        getStudentDetails: a => dispatch(getStudentDetails(a)),
+        deleteStudent: a => dispatch(deleteStudent(a))
     };
 };
 

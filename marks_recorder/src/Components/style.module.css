@@ -46,7 +46,8 @@
     grid-gap: 20px;
     grid-template-areas: 
     'a b'
-    'c c';
+    'c c'
+    'd d';
 }
 
 .marksSheet > *{
@@ -67,6 +68,10 @@
 
 .marksTable{
     grid-area: c;
+}
+
+.result{
+    grid-area: d;
 }
 
 @media screen and (min-width: 600px) {

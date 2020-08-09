@@ -1,0 +1,8 @@
+soc_science,max_marks_each_sub,total_max,name,grade,science,section,percent,id,class_of_student,min_marks_each_sub,hindi,total_marks_obtained,english,maths,second_language,total_min,exam_type,roll_no
+20,25.0,150,Faheem Jagirdar,FAIL,20,J,72.0,1.0,3,10.0,20,108.0,20,20,8,60,Finals,4
+20,25.0,150,Chandan,FAIL,20,J,72.0,7.0,4,10.0,20,108.0,20,20,8,60,Finals,4
+89,100.0,600,Rakesh,A,76,J,77.16666666666667,8.0,10,40.0,55,463.0,99,78,66,240,Monthly,52
+78,100.0,600,Amar Shaikh,C,77,J,66.66666666666667,9.0,2,40.0,66,400.0,56,56,67,240,Finals,45
+22,25.0,150,Dayna Fogg,O,18,A,80.66666666666667,10.0,1,10.0,22,121.0,17,21,21,60,Monthly,11
+3,25.0,150,Seymour Radmore,FAIL,23,M,46.666666666666664,11.0,1,10.0,6,70.0,5,21,12,60,Monthly,45
+12,25.0,150,Andrus Maylin,B,13,A,70.0,12.0,1,10.0,21,105.0,14,23,22,60,Monthly,34
