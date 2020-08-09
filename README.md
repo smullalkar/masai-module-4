@@ -24,7 +24,7 @@ To get started and know better here is the list of the features build inside thi
 4.Marks sheet of a student.
 <p> <img src  = "/marks_recorder/public/markscard.png"> </p>
 
-## Getting StartedFollow this simple steps to start using this application
+## Getting Started Follow this simple steps to start using this application
 
 ### Client
 
