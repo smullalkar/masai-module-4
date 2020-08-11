@@ -6,7 +6,7 @@ and Flask in the backend and storing the data in csv files.
 Marks recorder is simple student's management system which can be used by school teachers to manage and mentain the records of marks obatined by students of class 1 to class 10.
 <br>
 <br>
-<a href =  "http://marksrecorderproject.smullalkar.tech">
+<a href =  "https://marksrecordproject.smullalkar.tech/">
   <button style = "background:red,padding:5px">Demo Link</button>
 </a>
 
@@ -24,7 +24,7 @@ To get started and know better here is the list of the features build inside thi
 4.Marks sheet of a student.
 <p> <img src  = "/marks_recorder/public/markscard.png"> </p>
 
-## Getting Started Follow this simple steps to start using this application
+## Getting Started Follow these simple steps to start using this application
 
 ### Client
 
